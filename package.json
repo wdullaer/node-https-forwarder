@@ -1,5 +1,5 @@
 {
-    "name" : "Node HTTPS Forwarder",
+    "name" : "Node-HTTPS-Forwarder",
     "main" : "server.js",
     "version": "0.1.0",
     "description": "Forwards all requests to the same host using https",

@@ -50,7 +50,7 @@ app.set('port', process.env.PORT || defaultPort);
 // Main page route
 app.all('/*', function(req,res) {
     logger.debug('Received a request');
-    var target = 'https' + '://' + req.get('host') + req.originalUrl + ':' + forwardPort;
+    var target = 'https' + '://' + req.get('host') + ':' +forwardPort + req.originalUrl;
     logger.debug('Redirect URL: '+target);
     res.statusCode = 303;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
