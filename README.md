@@ -6,9 +6,15 @@ specified.
 
 Usage
 =====
+### Use pre-built docker images
 ```bash
-git clone https://github.com/wdullaer/node_https_forwarder.git
-cd node_https_forwarder
+docker run wdullaer/node_https_forwarder
+```
+
+### Build from source
+```bash
+git clone https://github.com/wdullaer/node-https-forwarder.git
+cd node-https-forwarder
 docker build -t node_https_forwarder_image .
 docker run node_https_forwarder_image
 ```
@@ -29,4 +35,3 @@ Configuration Variables
 TODO
 ====
 ### Add automated testing
-### Upload image to public docker repository
