@@ -5,7 +5,7 @@
 # Version 1.0
 
 FROM dockerfile/nodejs
-MAINTAINER Wouter Dullaert, wouter.dullaert@toyota-europe.com
+MAINTAINER Wouter Dullaert, wouter.dullaert@gmail.com
 
 # Get our dependencies
 ADD package.json /tmp/package.json

@@ -1,5 +1,5 @@
 // server.js
-// Author: Wouter Dullaert (wouter.dullaert@toyota-europe.com)
+// Author: Wouter Dullaert (wouter.dullaert@gmail.com)
 
 // Forwards all requests to the same host using HTTPS
 //The port where the https client is listening can be specified

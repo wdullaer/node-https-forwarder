@@ -6,7 +6,7 @@ specified.
 
 Usage
 =====
-### Use pre-built docker images
+### Use the pre-built docker image
 ```bash
 docker run wdullaer/node_https_forwarder
 ```

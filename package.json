@@ -2,8 +2,8 @@
     "name" : "Node-HTTPS-Forwarder",
     "main" : "server.js",
     "version": "0.1.0",
-    "description": "Forwards all requests to the same host using https",
-    "author": "Wouter Dullaert <wouter.dullaert@toyota-europe.com>",
+    "description": "Forwards all requests to the same host on a different port",
+    "author": "Wouter Dullaert <wouter.dullaert@gmail.com>",
     "private": true,
     "dependencies": {
         "express" : ">=4.6.1",
