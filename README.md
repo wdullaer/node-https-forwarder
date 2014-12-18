@@ -8,15 +8,15 @@ Usage
 =====
 ### Use the pre-built docker image
 ```bash
-docker run wdullaer/node_https_forwarder
+docker run wdullaer/node-https-forwarder
 ```
 
 ### Build from source
 ```bash
 git clone https://github.com/wdullaer/node-https-forwarder.git
 cd node-https-forwarder
-docker build -t node_https_forwarder_image .
-docker run node_https_forwarder_image
+docker build -t node-https_forwarder-image .
+docker run node-https-forwarder_image
 ```
 
 
