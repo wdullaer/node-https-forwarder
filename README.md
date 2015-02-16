@@ -24,7 +24,7 @@ Configuration Variables
 =======================
 ### Generic Options
 - *PORT* - The port on which the server will bind for http traffic (default: 80)
-- *FORWARD_PORT* - The port where traffic should beforwarded to (default: 443)
+- *FORWARD_PORT* - The port where traffic should be forwarded to (default: 443)
 
 ### Logging Options
 - *LOGGING_LEVEL* - Verbosity of the logging (debug, info, warn, error)
