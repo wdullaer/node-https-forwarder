@@ -5,6 +5,7 @@
     "description": "Forwards all requests to the same host on a different port",
     "author": "Wouter Dullaert <wouter.dullaert@gmail.com>",
     "private": true,
+    "start": "node server.js",
     "dependencies": {
         "express" : ">=4.6.1",
         "winston": ">=0.7.3",
