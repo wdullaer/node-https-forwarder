@@ -9,3 +9,5 @@ MAINTAINER Wouter Dullaert, wouter.dullaert@gmail.com
 
 # Expose the webserver port
 EXPOSE 80
+
+CMD node server.js

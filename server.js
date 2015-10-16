@@ -11,11 +11,11 @@
 // ES_LOGGING_INSTANCE_PORT_9200_TCP_ADDR: optional IP of the logger ES
 // ES_LOGGING_INSTANCE_PORT_9200_TCP_PORT: optional Port of the logger ES
 // =============================================================================
+'use strict';
 
 // Import the packages we are going to use
 var express = require('express'); // Express Webserver library
 var logger = require('winston'); // Logger library
-var Elasticsearch = require('winston-elasticsearch').Elasticsearch; // ES output for winston
 
 // Configure the winston logger
 logger.remove(logger.transports.Console);
@@ -23,19 +23,6 @@ logger.add(logger.transports.Console, {
     level : process.env.LOGGING_LEVEL || 'info',
     timestamp : true
 });
-if(process.env.ES_LOGGING_INSTANCE_PORT_9200_TCP_ADDR !== undefined) {
-    var logIndexName = "node-logs";
-    logger.add(logger.transports.Elasticsearch, {
-        level : process.env.ES_LOGGING_LEVEL || process.env.LOGGING_LEVEL || 'info',
-        fireAndForget : true,
-        indexName : logIndexName,
-        typeName : 'log',
-        disable_fields : true,
-        curlDebug : false,
-        host : process.env.ES_LOGGING_INSTANCE_PORT_9200_TCP_ADDR,
-        port : process.env.ES_LOGGING_INSTANCE_PORT_9200_TCP_PORT
-    });
-}
 
 // Default port to listen on
 var defaultPort = 80;
@@ -58,25 +45,22 @@ app.all('/*', function(req,res) {
     res.end('Redirecting to <a href="'+encodeURI(target)+'">'+encodeURI(target)+'</a>\n');
 });
 
-// Make sure the app doesn't die when an error occurs
-app.use(function(err, req, res, next) {
-    if(!err) return next();
-    logger.warn(err.stack);
-    res.status(500).send("An unexpected error occured.\n");
-});
-
 // Start the server
 var server = app.listen(app.get('port'), function() {
     logger.info("Server started listening on port "+ app.get('port'));
 });
 
 // Handle SIGTERM gracefully
-process.on('SIGTERM', function(){
-    // Serve existing requests, but refuse new ones
-    logger.warn("Received SIGTERM: wrapping up existing requests");
-    server.close(function(){
-        // Exit once all existing requests have been served
-        logger.warn("Received SIGTERM: done serving existing requests. Exiting");
-        process.exit(0);
-    });
-});
+process.on('SIGTERM', gracefulShutdown);
+process.on('SIGINT', gracefulShutdown);
+process.on('SIGHUP', gracefulShutdown);
+
+function gracefulShutdown() {
+  // Serve existing requests, but refuse new ones
+  logger.warn('Received signal to terminate: wrapping up existing requests');
+  server.close(function() {
+    // Exit once all existing requests have been served
+    logger.warn('Received signal to terminate: done serving existing requests. Exiting');
+    process.exit(0);
+  });
+}
